@@ -1,4 +1,4 @@
-# hello-stm32
+# gfx-stm32
 
 A simple program written for the STM32F401CEU6 microcontroller.
 
