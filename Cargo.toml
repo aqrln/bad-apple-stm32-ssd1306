@@ -1,8 +1,6 @@
-# This file was automatically generated.
-
 [package]
 edition = "2021"
-name = "gfx-stm32"
+name = "bad-apple-stm32"
 version = "0.1.0"
 
 [dependencies]
@@ -20,9 +18,10 @@ panic-probe = { version = "0.3.1", features = ["print-defmt"], optional = true }
 ssd1306 = "0.8.4"
 embedded-graphics = { version = "0.8.1", features = ["defmt"] }
 display-interface = "0.4"
+tinygif = { version = "0.0.4", features = ["defmt"] }
 
 [[bin]]
-name = "gfx-stm32"
+name = "bad-apple-stm32"
 test = false
 bench = false
 
