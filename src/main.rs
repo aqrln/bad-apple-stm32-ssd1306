@@ -1,16 +1,9 @@
 #![no_std]
 #![no_main]
 
-mod fmt;
-
-use display_interface::DisplayError;
-use embedded_graphics::{pixelcolor::BinaryColor, prelude::*};
-#[cfg(not(feature = "defmt"))]
-use panic_halt as _;
-use tinygif::Gif;
-#[cfg(feature = "defmt")]
 use {defmt_rtt as _, panic_probe as _};
 
+use display_interface::DisplayError;
 use embassy_executor::Spawner;
 use embassy_stm32::{
     gpio::{Level, Output, Pin, Speed},
@@ -18,12 +11,14 @@ use embassy_stm32::{
     time::Hertz,
 };
 use embassy_time::{Duration, Instant, Timer};
+use embedded_graphics::{pixelcolor::BinaryColor, prelude::*};
 use ssd1306::{
     mode::DisplayConfig, prelude::Brightness, rotation::DisplayRotation, size::DisplaySize128x64,
     I2CDisplayInterface, Ssd1306,
 };
+use tinygif::Gif;
 
-use fmt::*;
+use defmt::*;
 
 #[embassy_executor::main]
 async fn main(spawner: Spawner) {
