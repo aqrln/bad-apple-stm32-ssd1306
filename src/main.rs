@@ -88,18 +88,3 @@ async fn graphics(
 
     Ok(())
 }
-
-#[embassy_executor::task]
-async fn audio_task(audio_pin: AnyPin, mut_btn_pin: AnyPin) {
-    let mut out = Output::new(audio_pin, Level::Low, Speed::Low);
-    let mute_btn = Input::new(mut_btn_pin, Pull::Up);
-
-    loop {
-        if mute_btn.is_low() {
-            break;
-        }
-
-        out.toggle();
-        Timer::after(Duration::from_micros(2273)).await;
-    }
-}
