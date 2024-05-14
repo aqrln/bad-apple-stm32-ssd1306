@@ -8,11 +8,12 @@ cortex-m = { version = "0.7.7", features = ["inline-asm", "critical-section-sing
 cortex-m-rt = "0.7.4"
 defmt = { version = "0.3.6", optional = true }
 defmt-rtt = { version = "0.4.0", optional = true }
-embassy-stm32 = { git = "https://github.com/embassy-rs/embassy", rev = "45a2abc392df91ce6963ac0956f48f22bfa1489b", features = ["defmt", "stm32f401ce", "unstable-pac", "memory-x", "time-driver-any"] }
-embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "45a2abc392df91ce6963ac0956f48f22bfa1489b", features = ["arch-cortex-m", "executor-thread", "integrated-timers"] }
-embassy-futures = { git = "https://github.com/embassy-rs/embassy", rev = "45a2abc392df91ce6963ac0956f48f22bfa1489b" }
-embassy-sync = { git = "https://github.com/embassy-rs/embassy", rev = "45a2abc392df91ce6963ac0956f48f22bfa1489b" }
-embassy-time = {  git = "https://github.com/embassy-rs/embassy", rev = "45a2abc392df91ce6963ac0956f48f22bfa1489b", features = ["tick-hz-32_768"] }
+defmt-macros = { version = "=0.3.7" } # TODO: remove once https://github.com/knurling-rs/defmt/pull/835 is merged and released
+embassy-stm32 = { git = "https://github.com/embassy-rs/embassy", rev = "e1435195cb90f6298b236255b5248db2706aead7", features = ["defmt", "stm32f401ce", "unstable-pac", "memory-x", "time-driver-any"] }
+embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "e1435195cb90f6298b236255b5248db2706aead7", features = ["arch-cortex-m", "executor-thread", "integrated-timers"] }
+embassy-futures = { git = "https://github.com/embassy-rs/embassy", rev = "e1435195cb90f6298b236255b5248db2706aead7" }
+embassy-sync = { git = "https://github.com/embassy-rs/embassy", rev = "e1435195cb90f6298b236255b5248db2706aead7" }
+embassy-time = {  git = "https://github.com/embassy-rs/embassy", rev = "e1435195cb90f6298b236255b5248db2706aead7", features = ["tick-hz-32_768"] }
 panic-halt = "0.2.0"
 panic-probe = { version = "0.3.1", features = ["print-defmt"], optional = true }
 ssd1306 = "0.8.4"
