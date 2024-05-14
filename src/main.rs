@@ -86,10 +86,25 @@ async fn graphics(
         display.flush()?;
 
         let frame_duration = frame_begin.elapsed();
-        info!("rendered frame {} in {:?}", i, frame_duration);
+        info!("rendered frame {} in {:?}us", i, frame_duration.as_micros());
 
         Timer::after(Duration::from_millis(125) - frame_duration).await;
     }
 
     Ok(())
+}
+
+#[embassy_executor::task]
+async fn audio_task(audio_pin: AnyPin, mut_btn_pin: AnyPin) {
+    let mut out = Output::new(audio_pin, Level::Low, Speed::Low);
+    let mute_btn = Input::new(mut_btn_pin, Pull::Up);
+
+    loop {
+        if mute_btn.is_low() {
+            break;
+        }
+
+        out.toggle();
+        Timer::after(Duration::from_micros(2273)).await;
+    }
 }
