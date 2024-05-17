@@ -10,7 +10,7 @@ use embassy_stm32::{
     i2c::I2c,
     time::Hertz,
 };
-use embassy_time::{Duration, Instant, Timer};
+use embassy_time::{Duration, Instant, Ticker, Timer};
 use embedded_graphics::{pixelcolor::BinaryColor, prelude::*};
 use ssd1306::{
     mode::DisplayConfig, prelude::Brightness, rotation::DisplayRotation, size::DisplaySize128x64,
@@ -74,6 +74,8 @@ async fn graphics(
 
     let image = Gif::<BinaryColor>::from_slice(include_bytes!("../bad-apple.gif"))?;
 
+    let mut ticker = Ticker::every(Duration::from_millis(125));
+
     for (i, frame) in image.frames().enumerate() {
         let frame_begin = Instant::now();
 
@@ -83,7 +85,7 @@ async fn graphics(
         let frame_duration = frame_begin.elapsed();
         info!("rendered frame {} in {:?}us", i, frame_duration.as_micros());
 
-        Timer::after(Duration::from_millis(125) - frame_duration).await;
+        ticker.next().await;
     }
 
     Ok(())
